@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const NotFound = () => {
+const Bookmark = () => {
   return (
     <View>
-      <Text>Not found</Text>
+      <Text>Bookmark</Text>
     </View>
   )
 }
 
-export default NotFound
+export default Bookmark
 
 const styles = StyleSheet.create({})

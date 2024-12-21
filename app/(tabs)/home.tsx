@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const NotFound = () => {
+const Home = () => {
   return (
     <View>
-      <Text>Not found</Text>
+      <Text>Home</Text>
     </View>
   )
 }
 
-export default NotFound
+export default Home
 
 const styles = StyleSheet.create({})
