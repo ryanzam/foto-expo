@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs, Redirect } from 'expo-router'
 
 import icons from '@/constants/Icons'
+import { Colors } from '@/constants/Colors'
 
 const TabIcon = ({ name, color, icon, focused }: any) => {
     return <View style={styles.tabIconView}>
@@ -14,11 +15,11 @@ const TabIcon = ({ name, color, icon, focused }: any) => {
 const TabsLayout = () => {
     return (
         <Tabs
-            screenOptions={{ 
-                tabBarShowLabel: false, 
-                tabBarActiveTintColor: "#e57bff",
+            screenOptions={{
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: Colors.textPrimary,
                 tabBarStyle: {
-                    backgroundColor:"#050022",
+                    backgroundColor: Colors.bgSecondary,
                     height: 60,
                     paddingTop: 10
                 }
