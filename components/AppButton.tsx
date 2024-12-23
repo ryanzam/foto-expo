@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 20,
         paddingRight: 20,
-        borderRadius: 20
+        borderRadius: 20,
+        minWidth: 330,
+        textAlign: "center"
     }
 })
