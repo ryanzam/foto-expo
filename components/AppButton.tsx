@@ -10,7 +10,7 @@ type AppButtonProps = {
 
 const AppButton = ({ text, isLoading, handlePress }: AppButtonProps) => {
     return (
-        <TouchableOpacity style={styles.btnView}>
+        <TouchableOpacity style={styles.btnView} onPress={handlePress}>
             <Text style={styles.btnText}>{text}</Text>
         </TouchableOpacity>
     )

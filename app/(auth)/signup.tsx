@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Colors } from '@/constants/Colors'
@@ -6,7 +6,8 @@ import Images from '@/constants/Images'
 import AppText from '@/components/AppText'
 import FormField from '@/components/FormField'
 import AppButton from '@/components/AppButton'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
+import { createUser } from '@/lib/appwrite'
 
 const Signup = () => {
 
@@ -15,8 +16,20 @@ const Signup = () => {
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
+        if (!form.username || !form.email || !form.password) {
+            Alert.alert("Error", "Make sure all fields are filled")
+        }
+        setIsSubmitting(true)
+        try {
+            const res = await createUser(form.email, form.password, form.username)
+            router.replace("/(tabs)/home")
 
+        } catch (error: any) {
+            Alert.alert("Error", error?.message)
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
