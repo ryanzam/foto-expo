@@ -55,3 +55,12 @@ export const signin = async (email: string, password: string) => {
         throw error
     }
 }
+
+export const getAllPhotos = async () => {
+    try {
+        const photos = await database.listDocuments(appwriteConfig.dbId, appwriteConfig.photosCollectionId)
+        return photos.documents
+    } catch (error) {
+        throw error
+    }
+}
