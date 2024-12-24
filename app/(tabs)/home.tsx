@@ -6,13 +6,14 @@ import { Colors } from '@/constants/Colors'
 import SearchInput from '@/components/SearchInput'
 import TrendingPhotos from '@/components/TrendingPhotos'
 import NoData from '@/components/NoData'
-import { getAllPhotos } from '@/lib/appwrite'
+import { getAllPhotos, getTrendingPhotos } from '@/lib/appwrite'
 import useAppwrite from '@/lib/useAppwrite'
 import ImageCard from '@/components/ImageCard'
 
 const Home = () => {
 
-  const { data, refetchData, loading } = useAppwrite(getAllPhotos)
+  const { data: photos, refetchData, loading } = useAppwrite(getAllPhotos)
+  const { data: trendingPhotos } = useAppwrite(getTrendingPhotos)
 
   const [refreshing, setRefreshing] = useState(false)
 
@@ -25,7 +26,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <FlatList
-        data={data}
+        data={photos}
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => (
           <ImageCard image={item} />
@@ -33,18 +34,16 @@ const Home = () => {
 
         ListHeaderComponent={() => (
           <View>
-            <View style={styles.headerListView}>
+            <View>
               <AppText text='Welcome back, John' color={Colors.textSecondary} size={20} />
             </View>
 
             <SearchInput />
 
-            <View>
-              <AppText text='Trending Photos' size={30} color={Colors.textSecondary} />
-
-              <TrendingPhotos photos={[]} />
+            <View style={styles.trendingView}>
+              <AppText text='Trending Photos' size={25} color={Colors.textPrimary} />
+              <TrendingPhotos photos={trendingPhotos} />
             </View>
-
           </View>
         )}
 
@@ -65,7 +64,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bgPrimary,
     height: "100%"
   },
-  headerListView: {
-
+  trendingView: {
+    gap:10,
+    marginBottom: 10
   }
 })

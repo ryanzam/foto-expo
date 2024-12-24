@@ -1,4 +1,4 @@
-import { Account, Avatars, Client, Databases, ID } from "react-native-appwrite"
+import { Account, Avatars, Client, Databases, ID, Query } from "react-native-appwrite"
 
 export const appwriteConfig = {
     endpoint: "https://cloud.appwrite.io/v1",
@@ -59,6 +59,19 @@ export const signin = async (email: string, password: string) => {
 export const getAllPhotos = async () => {
     try {
         const photos = await database.listDocuments(appwriteConfig.dbId, appwriteConfig.photosCollectionId)
+        return photos.documents
+    } catch (error) {
+        throw error
+    }
+}
+
+export const getTrendingPhotos = async () => {
+    try {
+        const photos = await database.listDocuments(
+            appwriteConfig.dbId,
+            appwriteConfig.photosCollectionId,
+            [Query.orderDesc("$createdAt"), Query.limit(7)])
+
         return photos.documents
     } catch (error) {
         throw error
