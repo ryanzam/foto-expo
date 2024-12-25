@@ -77,3 +77,16 @@ export const getTrendingPhotos = async () => {
         throw error
     }
 }
+
+export const searchPhotos = async (query: any) => {
+    try {
+        const photos = await database.listDocuments(
+            appwriteConfig.dbId,
+            appwriteConfig.photosCollectionId,
+            [Query.search("title", query)])
+
+        return photos.documents
+    } catch (error) {
+        throw error
+    }
+}

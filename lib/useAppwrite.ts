@@ -3,7 +3,7 @@ import { Models } from "react-native-appwrite"
 import { getAllPhotos } from "./appwrite"
 import { Alert } from "react-native"
 
-const useAppwrite = (func: Function) => {
+const useAppwrite = (func: any) => {
     const [data, setData] = useState<Models.Document[]>([])
     const [loading, setLoading] = useState(false)
 
