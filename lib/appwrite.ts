@@ -10,7 +10,8 @@ export const appwriteConfig = {
 }
 
 const client: Client = new Client()
-export const account = new Account(client);
+
+export const account: Account = new Account(client);
 export const database = new Databases(client);
 
 
@@ -28,7 +29,7 @@ export const createUser = async (email: string, password: string, username: stri
 
         const avatarUrl = avatars.getInitials(username)
 
-        await signin(email, password)
+        await signIn(email, password)
 
         const newUser = await database.createDocument(
             appwriteConfig.dbId,
@@ -47,11 +48,19 @@ export const createUser = async (email: string, password: string, username: stri
     }
 }
 
-export const signin = async (email: string, password: string) => {
+export const signIn = async (email: string, password: string) => {
     try {
         const session = await account.createEmailPasswordSession(email, password)
         return session
     } catch (error) {
+        throw error
+    }
+}
+
+export const signOut = async () => {
+    try {
+        return await account.deleteSession("current")
+    } catch (error: any) {
         throw error
     }
 }
@@ -88,5 +97,46 @@ export const searchPhotos = async (query: any) => {
         return photos.documents
     } catch (error) {
         throw error
+    }
+}
+
+export const getUserPhotos = async (userId: string) => {
+    try {
+        const photos = await database.listDocuments(
+            appwriteConfig.dbId,
+            appwriteConfig.photosCollectionId,
+            [Query.equal("user", userId)])
+
+        return photos.documents
+    } catch (error) {
+        throw error
+    }
+}
+
+export const getAccount = async () => {
+    try {
+        return await account.get()
+    } catch (error: any) {
+        throw error
+    }
+}
+
+export const getCurrentUser = async () => {
+    try {
+        const currentAccount = await getAccount()
+        if (!currentAccount) throw Error
+
+        const currentUer = await database.listDocuments(
+            appwriteConfig.dbId,
+            appwriteConfig.usersCollectionId,
+            [Query.equal('accountId', currentAccount.$id)])
+
+        if (!currentUer) throw Error
+
+        return currentUer.documents[0]
+
+    } catch (error: any) {
+        /* throw new Error(error) */
+        console.log(error)
     }
 }

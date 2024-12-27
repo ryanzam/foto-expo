@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Colors } from '@/constants/Colors'
@@ -6,7 +6,9 @@ import Images from '@/constants/Images'
 import AppText from '@/components/AppText'
 import FormField from '@/components/FormField'
 import AppButton from '@/components/AppButton'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
+import { getCurrentUser, signIn } from '@/lib/appwrite'
+import { useGlobalContext } from '@/context/GlobalProvider'
 
 const signin = () => {
 
@@ -15,8 +17,28 @@ const signin = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const onSubmit = () => {
+  const { setUser, setIsLoggedIn } = useGlobalContext();
 
+  const onSubmit = async () => {
+    if (form.email === "" || form.password === "") {
+      Alert.alert("Error", "Email/Password missing");
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await signIn(form.email, form.password);
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLoggedIn(true);
+
+      Alert.alert("Success", "Signed in successfully");
+      router.replace("/home");
+    } catch (error: any) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -73,6 +95,6 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   registerView: {
-    
+
   }
 })

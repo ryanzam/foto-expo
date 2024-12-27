@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     view: {
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 10
     },
     image: {
         height: 150,

@@ -8,6 +8,7 @@ import FormField from '@/components/FormField'
 import AppButton from '@/components/AppButton'
 import { Link, router } from 'expo-router'
 import { createUser } from '@/lib/appwrite'
+import { useGlobalContext } from '@/context/GlobalProvider'
 
 const Signup = () => {
 
@@ -16,19 +17,23 @@ const Signup = () => {
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const onSubmit = async () => {
-        if (!form.username || !form.email || !form.password) {
-            Alert.alert("Error", "Make sure all fields are filled")
-        }
-        setIsSubmitting(true)
-        try {
-            const res = await createUser(form.email, form.password, form.username)
-            router.replace("/(tabs)/home")
+    const { setUser, setIsLoggedIn } = useGlobalContext();
 
+    const onSubmit = async () => {
+        if (form.username === "" || form.email === "" || form.password === "") {
+            Alert.alert("Error", "Make sure all fields are filled");
+        }
+        setIsSubmitting(true);
+        try {
+            const result = await createUser(form.email, form.password, form.username);
+            setUser(result);
+            setIsLoggedIn(true);
+
+            router.replace("/home");
         } catch (error: any) {
-            Alert.alert("Error", error?.message)
+            Alert.alert("Error", error.message);
         } finally {
-            setIsSubmitting(false)
+            setIsSubmitting(false);
         }
     }
 

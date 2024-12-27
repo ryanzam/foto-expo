@@ -35,7 +35,7 @@ const Home = () => {
         ListHeaderComponent={() => (
           <View>
             <View>
-              <AppText text='Welcome back, John' color={Colors.textSecondary} size={20} />
+              <AppText text={`Welcome back, John`}  color={Colors.textSecondary} size={20} />
             </View>
 
             <SearchInput />
