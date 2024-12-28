@@ -29,7 +29,7 @@ const Signup = () => {
             setUser(result);
             setIsLoggedIn(true);
 
-            router.replace("/home");
+            router.replace("/signin");
         } catch (error: any) {
             Alert.alert("Error", error.message);
         } finally {

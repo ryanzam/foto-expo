@@ -20,15 +20,9 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "hostname": "com.foto"
+      "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      [
-        "expo-font",
-        {
-          "fonts": ["./assets/fonts/BlackberryJam.ttf"]
-        }
-      ],
       "expo-router",
       [
         "expo-splash-screen",
