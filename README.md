@@ -1,6 +1,20 @@
-# Welcome to your Expo app 👋
+![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![React native](	https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37)
+![Appwrite](https://img.shields.io/badge/Appwrite-%23FD366E.svg?style=for-the-badge&logo=appwrite&logoColor=white)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# A Foto app 👋
+
+This is an Expo Foto project. 
+
+## 🌟 Introducion
+A full-stack Expo application with React Native. Designed with modern tools like Expo SDK 52, Appwrite, and TypeScript for a seamless and scalable experience.
+
+## 💻 Tech Stack used
+1. Expo v52.0.23
+2. React Native
+3. TypeScript
+4. Appwrite
 
 ## Get started
 
