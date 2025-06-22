@@ -3,12 +3,12 @@
 ![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37)
 ![Appwrite](https://img.shields.io/badge/Appwrite-%23FD366E.svg?style=for-the-badge&logo=appwrite&logoColor=white)
 
-# A Foto app 👋
+# FotoHolic 👋
 
-This is an Expo Foto project. 
+This is an Expo ReactNative project. 
 
 ## 🌟 Introducion
-A full-stack Expo application with React Native. Designed with modern tools like Expo SDK 52, Appwrite, and TypeScript for a seamless and scalable experience.
+A full-stack Expo application with React Native and Expo. Designed with modern tools like Expo SDK 52, Appwrite, and TypeScript for a seamless and scalable experience.
 
 ## 💻 Tech Stack used
 1. Expo v52.0.23
